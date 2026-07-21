@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { UserAvatarMenu } from '../components/UserAvatarMenu';
+import { SphereAIButton } from '../components/SphereAIButton';
 
 const avatarSrc =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuBoBuRJI1yShmJcMfHY1XLGNg58oqoS5MyV6HQICcczCWG7fu-lzanV_5ir_WBXQB19zta9onD5oKMvRyXiRpCjARwoUGMeyA0WX3cZa4UuBn_ZNEIt7g-llR2NmJcFr5na00oENmk4NouYphWdHgtSlu0awtCw8ILJrkXivX-Hmewe1jmjHEriSYvPNBH8sC6DmExAXo1R96lZUvLplbzlbSMm2cAgWhx9IlcImQS45sYgmsPBdDBehw';
@@ -10,6 +10,7 @@ const videoImage =
 const modules = [
   { icon: 'dashboard', label: 'Bảng điều khiển', href: '/dashboard', active: false },
   { icon: 'school', label: 'Khóa học của tôi', href: '/courses', active: true },
+  { icon: 'auto_stories', label: 'Quản lý bài học', href: '/lesson-management', active: false },
 ];
 
 const resources = [
@@ -24,8 +25,6 @@ const concepts = [
 ];
 
 export function LessonDetailPage() {
-  const [isChatOpen, setIsChatOpen] = useState(false);
-
   return (
     <div className="min-h-screen bg-[#0d131f] text-[#dde2f4] selection:bg-[#adc7ff]/30">
       <header className="fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between border-b border-[#414754] bg-[#1a202c] px-4 md:px-8">
@@ -46,7 +45,7 @@ export function LessonDetailPage() {
           <button className="p-2 text-[#c1c6d7] transition-colors hover:text-[#adc7ff]" type="button" aria-label="Thông báo">
             <span className="material-symbols-outlined">notifications</span>
           </button>
-          <UserAvatarMenu name="Alex Rivera" role="Học viên Pro" avatarSrc={avatarSrc} />
+          <UserAvatarMenu name="Alex Rivera" role="Học viên" avatarSrc={avatarSrc} />
         </div>
       </header>
 
@@ -103,11 +102,6 @@ export function LessonDetailPage() {
           </div>
         </nav>
 
-        <div className="mt-auto px-4">
-          <button className="w-full rounded-lg border border-[#adc7ff]/20 bg-[#2f3542] py-3 font-mono text-[14px] font-medium text-[#adc7ff] transition-all hover:bg-[#adc7ff] hover:text-[#002e68]" type="button">
-            Nâng cấp Pro
-          </button>
-        </div>
       </aside>
 
       <main className="min-h-screen pb-24 pt-16 md:ml-64">
@@ -257,9 +251,9 @@ export function LessonDetailPage() {
                 </div>
                 <h3 className="text-[24px] font-semibold text-[#dde2f4]">Kiểm tra kiến thức</h3>
                 <p className="px-4 text-[14px] leading-5 text-[#c1c6d7]">Kiểm tra mức độ hiểu của bạn về kiến trúc LLM và vị trí các dịch vụ AWS.</p>
-                <button className="w-full rounded-xl bg-[#ffc080] py-4 font-bold text-[#4a2800] transition-all active:scale-95 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,192,128,0.3)]" type="button">
+                <a className="block w-full rounded-xl bg-[#ffc080] py-4 font-bold text-[#4a2800] transition-all active:scale-95 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,192,128,0.3)]" href="/quiz">
                   Làm quiz
-                </button>
+                </a>
               </div>
 
               <div className="rounded-xl border border-[#414754] bg-[#1a202c] p-6">
@@ -296,45 +290,7 @@ export function LessonDetailPage() {
         ))}
       </nav>
 
-      <div className="fixed bottom-8 right-8 z-50 hidden flex-col items-end gap-4 md:flex">
-        {isChatOpen && (
-          <div className="mb-2 w-80 overflow-hidden rounded-2xl border border-[#adc7ff]/30 bg-[#242a37] shadow-2xl">
-            <div className="flex items-center justify-between bg-[#adc7ff] p-4 font-bold text-[#002e68]">
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[18px]">auto_awesome</span>
-                <span className="text-[14px]">Trợ lý LearnSphere AI</span>
-              </div>
-              <button className="rounded hover:bg-[#002e68]/10" type="button" onClick={() => setIsChatOpen(false)} aria-label="Đóng chat AI">
-                <span className="material-symbols-outlined text-[18px]">close</span>
-              </button>
-            </div>
-            <div className="flex h-64 flex-col gap-3 overflow-y-auto p-4">
-              <div className="max-w-[85%] self-start rounded-lg border border-[#414754] bg-[#1a202c] p-3 text-[14px] text-[#c1c6d7]">
-                Xin chào, mình là Aura. Mình có thể giải thích mọi khái niệm trong bài học LLM này. Bạn muốn tìm hiểu gì?
-              </div>
-            </div>
-            <div className="border-t border-[#414754] bg-[#161c28] p-4">
-              <div className="flex gap-2">
-                <input className="flex-1 rounded-lg border border-[#414754] bg-[#0d131f] px-3 py-1.5 text-[14px] outline-none focus:ring-1 focus:ring-[#adc7ff]" placeholder="Hỏi AI..." type="text" />
-                <button className="text-[#adc7ff] transition-transform hover:scale-110" type="button" aria-label="Gửi tin nhắn">
-                  <span className="material-symbols-outlined">send</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-        <button
-          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#adc7ff] to-[#24dfba] text-[#002e68] shadow-xl transition-all active:scale-95 hover:scale-110"
-          type="button"
-          onClick={() => setIsChatOpen((current) => !current)}
-          aria-label="Bật tắt trợ lý AI"
-        >
-          <div className="absolute inset-0 animate-ping rounded-full bg-[#adc7ff]/20" />
-          <span className="material-symbols-outlined relative text-[28px]" style={{ fontVariationSettings: '"FILL" 1' }}>
-            smart_toy
-          </span>
-        </button>
-      </div>
+      <SphereAIButton />
     </div>
   );
 }

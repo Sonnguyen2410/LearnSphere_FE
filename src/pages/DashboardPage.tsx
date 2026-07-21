@@ -1,4 +1,5 @@
 import { UserAvatarMenu } from '../components/UserAvatarMenu';
+import { SphereAIButton } from '../components/SphereAIButton';
 
 const courses = [
   {
@@ -97,7 +98,7 @@ export function DashboardPage() {
           </button>
           <UserAvatarMenu
             name="Alex Rivera"
-            role="Học viên Pro"
+            role="Học viên"
             avatarSrc="https://lh3.googleusercontent.com/aida-public/AB6AXuAK3DeXFfcU7eoLcYm0J-P0geFc_1SNB3sOpbZdSgXNGYGNkWLvpydHgoO3teNd6SCKCfYzJzNrs1AB7P8Pu74X-3istluRsHM1oPvbEs2nLPM2cHWOxHmwakxXKAZY99rZGG-p9kypULkAvH9bkTxwS1EgNluYqYhNlGpql2gZkqIWaOYk5FWOQvYjhFI2VJivahYgEOwamgFB5MZtSI9a-fovv-ztHAlZ1TjPwNnEgpB773mBUptA6A"
           />
         </div>
@@ -135,6 +136,8 @@ export function DashboardPage() {
             { icon: 'dashboard', label: 'Bảng điều khiển', active: true },
             { icon: 'school', label: 'Khóa học của tôi', active: false, href: '/courses' },
             { icon: 'auto_awesome', label: 'Lộ trình học', active: false },
+            { icon: 'auto_stories', label: 'Quản lý bài học', active: false, href: '/lesson-management' },
+            { icon: 'monitoring', label: 'Giám sát hệ thống', active: false, href: '/system-monitoring' },
             { icon: 'library_books', label: 'Tài nguyên', active: false },
             { icon: 'settings', label: 'Cài đặt', active: false },
           ].map((item) => (
@@ -149,14 +152,6 @@ export function DashboardPage() {
           ))}
         </div>
 
-        <div className="mt-auto px-4">
-          <div className="rounded-xl border border-[#adc7ff]/20 bg-[#2f3542] p-4">
-            <p className="mb-2 text-[12px] text-[#ffc080]">Nâng cấp trải nghiệm học</p>
-            <button className="w-full rounded-lg bg-[#adc7ff] py-2 text-[14px] font-medium text-[#00285b] transition-all active:scale-95">
-              Nâng cấp Pro
-            </button>
-          </div>
-        </div>
       </aside>
 
       <main className="min-h-screen pt-16 md:pl-64 pb-24">
@@ -253,11 +248,12 @@ export function DashboardPage() {
                         </span>
                       </div>
                     </div>
-                    <button
+                    <a
                       className={`rounded-lg border px-4 py-2 text-[14px] transition-all ${quiz.buttonTone === 'primary' ? 'border-[#adc7ff]/20 bg-[#2f3542] text-[#adc7ff] hover:bg-[#adc7ff] hover:text-[#002e68]' : 'border-[#414754] bg-[#2f3542] text-[#c1c6d7] hover:bg-[#414754]'}`}
+                      href="/quiz"
                     >
                       {quiz.button}
-                    </button>
+                    </a>
                   </div>
                 ))}
               </div>
@@ -280,21 +276,13 @@ export function DashboardPage() {
         </div>
       </main>
 
-      <div className="fixed bottom-8 right-8 z-[60] flex flex-col items-end gap-3">
+      <div className="fixed bottom-28 right-8 z-[60] flex max-w-xs flex-col items-end gap-3">
         <div className="ai-pulse rounded-2xl border border-[#adc7ff]/20 bg-[#2f3542] p-4 shadow-lg max-w-xs">
           <p className="mb-1 text-[12px] font-bold text-[#adc7ff]">Gợi ý từ Sphere AI</p>
           <p className="text-[14px] text-[#dde2f4]">Sẵn sàng cho bài quiz Backpropagation chưa? Mình có thể giúp bạn ôn các ý chính trong 5 phút.</p>
         </div>
-        <button className="group flex items-center gap-3 rounded-full bg-[#adc7ff] px-4 py-3 text-[#002e68] shadow-2xl transition-transform active:scale-95 hover:scale-105">
-          <div className="flex h-8 w-8 items-center justify-center">
-            <span className="material-symbols-outlined text-[28px]" style={{ fontVariationSettings: '"FILL" 1' }}>smart_toy</span>
-          </div>
-          <div className="flex flex-col items-start leading-none">
-            <span className="text-[14px] font-bold">Hỏi Sphere AI</span>
-            <span className="text-[10px] uppercase tracking-wider opacity-80">Trợ lý</span>
-          </div>
-        </button>
       </div>
+      <SphereAIButton />
     </div>
   );
 }

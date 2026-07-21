@@ -1,4 +1,5 @@
 import { UserAvatarMenu } from '../components/UserAvatarMenu';
+import { SphereAIButton } from '../components/SphereAIButton';
 
 const avatarSrc =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuAK3DeXFfcU7eoLcYm0J-P0geFc_1SNB3sOpbZdSgXNGYGNkWLvpydHgoO3teNd6SCKCfYzJzNrs1AB7P8Pu74X-3istluRsHM1oPvbEs2nLPM2cHWOxHmwakxXKAZY99rZGG-p9kypULkAvH9bkTxwS1EgNluYqYhNlGpql2gZkqIWaOYk5FWOQvYjhFI2VJivahYgEOwamgFB5MZtSI9a-fovv-ztHAlZ1TjPwNnEgpB773mBUptA6A';
@@ -72,9 +73,12 @@ export function CourseCatalogPage() {
               <a className="border-b-2 border-[#adc7ff] pb-1 text-[16px] font-bold text-[#adc7ff]" href="/courses">
                 Khóa học
               </a>
-              {['Trợ lý AI', 'Chấm điểm', 'Tài nguyên'].map((item) => (
-                <a key={item} className="text-[16px] font-medium text-[#c1c6d7] transition-colors hover:text-[#dde2f4]" href="#">
-                  {item}
+              {[
+                { label: 'Chấm điểm', href: '#' },
+                { label: 'Tài nguyên', href: '#' },
+              ].map((item) => (
+                <a key={item.label} className="text-[16px] font-medium text-[#c1c6d7] transition-colors hover:text-[#dde2f4]" href={item.href}>
+                  {item.label}
                 </a>
               ))}
             </nav>
@@ -89,7 +93,7 @@ export function CourseCatalogPage() {
                 type="text"
               />
             </div>
-            <UserAvatarMenu name="Alex Rivera" role="Học viên Pro" avatarSrc={avatarSrc} />
+            <UserAvatarMenu name="Alex Rivera" role="Học viên" avatarSrc={avatarSrc} />
           </div>
         </div>
       </header>
@@ -243,14 +247,7 @@ export function CourseCatalogPage() {
         </section>
       </main>
 
-      <div className="fixed bottom-8 right-8 z-50">
-        <button className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-[#adc7ff]/30 bg-[#242a37] text-[#adc7ff] transition-all hover:shadow-[0_0_30px_rgba(173,199,255,0.3)]" type="button" aria-label="Mở trợ lý AI">
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#adc7ff]/10 to-[#24dfba]/10 opacity-0 transition-opacity group-hover:opacity-100" />
-          <span className="material-symbols-outlined relative z-10 animate-pulse text-[32px]" style={{ fontVariationSettings: '"FILL" 1' }}>
-            auto_awesome
-          </span>
-        </button>
-      </div>
+      <SphereAIButton />
 
       <footer className="mt-12 border-t border-white/5 bg-[#080e1a] py-12">
         <div className="flex w-full flex-col items-center justify-between gap-6 px-4 md:flex-row md:px-8">

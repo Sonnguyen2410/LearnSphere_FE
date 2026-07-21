@@ -1,3 +1,5 @@
+import { SphereAIButton } from '../components/SphereAIButton';
+
 export function HomePage() {
   return (
     <div className="min-h-screen bg-[#0d131f] text-[#dde2f4]">
@@ -10,9 +12,6 @@ export function HomePage() {
           <div className="hidden items-center gap-6 md:flex">
             <a className="border-b-2 border-[#adc7ff] pb-1 text-sm font-bold text-[#adc7ff]" href="#courses">
               Khóa học
-            </a>
-            <a className="text-sm font-medium text-[#c1c6d7] transition-colors hover:text-[#adc7ff]" href="#assistant">
-              Trợ lý AI
             </a>
             <a className="text-sm font-medium text-[#c1c6d7] transition-colors hover:text-[#adc7ff]" href="#grading">
               Chấm điểm
@@ -162,7 +161,7 @@ export function HomePage() {
         <section id="grading" className="px-4 py-14 text-center md:px-8 lg:px-10 lg:py-16">
           <div className="mx-auto max-w-3xl space-y-6">
             <h2 className="text-[48px] font-bold leading-tight tracking-[-0.02em] text-[#dde2f4]">
-              Sẵn sàng nâng cấp kỹ năng?
+              Sẵn sàng phát triển kỹ năng?
             </h2>
             <p className="text-[18px] leading-7 text-[#c1c6d7]">
               Tham gia cùng hàng nghìn chuyên gia đang làm chủ AI trên nền tảng cloud có khả năng mở rộng cao.
@@ -205,18 +204,7 @@ export function HomePage() {
         </div>
       </footer>
 
-      <div className="fixed bottom-8 right-8 z-[100] group">
-        <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-[#adc7ff] to-[#24dfba] opacity-20 blur group-hover:opacity-60 transition duration-500" />
-        <button className="relative flex h-16 w-16 items-center justify-center rounded-full border border-[#adc7ff]/30 bg-[#242a37] text-[#adc7ff] shadow-2xl transition-transform active:scale-90">
-          <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: '"FILL" 1' }}>
-            neurology
-          </span>
-          <div className="absolute -right-1 -top-1 h-4 w-4 rounded-full border-2 border-[#0d131f] bg-[#24dfba] animate-pulse" />
-        </button>
-        <div className="pointer-events-none absolute bottom-full right-0 mb-4 rounded-lg border border-[#414754] bg-[#2f3542] px-4 py-2 whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100">
-          <p className="text-[14px] font-medium text-[#dde2f4]">Hỏi Aura AI</p>
-        </div>
-      </div>
+      <SphereAIButton />
     </div>
   );
 }
